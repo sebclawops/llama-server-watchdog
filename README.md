@@ -1,6 +1,8 @@
 # llama-server-watchdog
 
-A lightweight PowerShell watchdog that keeps llama-server alive on Windows. Monitors the health endpoint and automatically restarts the process when it becomes unresponsive.
+A lightweight PowerShell watchdog that keeps llama-server alive on Windows.
+
+**Version:** 1.1.0 Monitors the health endpoint and automatically restarts the process when it becomes unresponsive.
 
 ## Why
 

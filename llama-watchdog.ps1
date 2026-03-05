@@ -1,6 +1,7 @@
 # llama-watchdog.ps1
 # Monitors llama-server health and restarts it if unresponsive.
 # Designed to run as a Windows Scheduled Task on the gaming PC.
+# Version: 1.1.0
 
 # --- Configuration ---
 $LlamaDir = "C:\llama-cpp"
@@ -44,14 +45,8 @@ function Stop-LlamaServer {
 
 function Start-LlamaServer {
     Write-Log "Starting llama-server..."
-    $startInfo = @{
-        FilePath     = "$LlamaDir\llama-server.exe"
-        ArgumentList = "-m $ModelPath -ngl 99 -c 32768 --port $Port --host 0.0.0.0"
-        WorkingDirectory = $LlamaDir
-        WindowStyle  = "Minimized"
-    }
-    Start-Process @startInfo
-    Start-Sleep -Seconds 10
+    Start-Process cmd -ArgumentList "/c cd /d $LlamaDir && start /min llama-server.exe -m $ModelPath -ngl 99 -c 32768 --port $Port --host 0.0.0.0" -WindowStyle Hidden
+    Start-Sleep -Seconds 30
 
     if (Test-LlamaHealth) {
         Write-Log "llama-server started successfully and responding on port $Port"
