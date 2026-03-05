@@ -48,7 +48,7 @@ function Start-LlamaServer {
         FilePath     = "$LlamaDir\llama-server.exe"
         ArgumentList = "-m $ModelPath -ngl 99 -c 32768 --port $Port --host 0.0.0.0"
         WorkingDirectory = $LlamaDir
-        WindowStyle  = "Hidden"
+        WindowStyle  = "Minimized"
     }
     Start-Process @startInfo
     Start-Sleep -Seconds 10
